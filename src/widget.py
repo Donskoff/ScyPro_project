@@ -11,7 +11,7 @@ def mask_account_card(bank_details: str) -> str:
     замаскирован и отображается в формате Название карты XXXX XX** **** XXXX,
     где X — это цифра номера.
     """
-    if "Счёт" in bank_details:
+    if "Счёт" or "Счет" in bank_details:
         bank_details_list = bank_details.split()
         bank_details_list[-1] = get_mask_account(bank_details_list[-1])
         new_bank_details = " ".join(bank_details_list)
