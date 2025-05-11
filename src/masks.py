@@ -39,10 +39,10 @@ def get_mask_account(account_number: str) -> str:
     # Преобразуем строку в список
     count_without_spaces_list = list(count_without_spaces)
     for i in range(len(count_without_spaces_list)):
-        if 0 <= i <= 13 :     #and count_without_spaces_list[i] != " ":
+        if 0 <= i <= 13:
             # Заменяем символ на "*"
             count_without_spaces_list[i] = ""
-        elif 13<i<16:
+        elif 13 < i < 16:
             count_without_spaces_list[i] = "*"
         # Преобразуем список обратно в строку
     masked_account_number = "".join(count_without_spaces_list)
