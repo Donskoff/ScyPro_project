@@ -50,4 +50,7 @@ def get_mask_account(account_number: str) -> str:
 
 
 # num_card = input("Введите номер банковской карты ...")
-# print(type(get_mask_card_number(num_card)))
+# print(get_mask_card_number(num_card))
+
+# num_card = input("Введите номер банковского счета ...")
+# print(get_mask_account(num_card))
