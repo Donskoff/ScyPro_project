@@ -47,3 +47,7 @@ def get_mask_account(account_number: str) -> str:
         # Преобразуем список обратно в строку
     masked_account_number = "".join(count_without_spaces_list)
     return masked_account_number
+
+
+# num_card = input("Введите номер банковской карты ...")
+# print(type(get_mask_card_number(num_card)))
