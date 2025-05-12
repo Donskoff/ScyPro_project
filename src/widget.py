@@ -29,29 +29,29 @@ def mask_account_card(bank_details: str) -> str:
         return "Введённые вами данные не корректны!"
 
 
-# def get_date(date_string: str) -> str:
-#     """Форматируем дату.
-#
-#     Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
-#     и возвращает строку с датой в формате "ДД.ММ.ГГГГ" пример: "11.03.2024"
-#     """
-#     # Разделяем строку на дату и время
-#     date_part = date_string.split("T")[0]
-#
-#     # Разделяем дату на год, месяц и день
-#     year, month, day = date_part.split("-")
-#
-#     # Формируем новую строку в нужном формате
-#     formatted_date = f"{day}.{month}.{year}"
-#     # можно так formatted_date = day + '.' + month + '.' + year
-#
-#     return formatted_date
+def get_date(date_string: str) -> str:
+    """Форматируем дату.
+
+    Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
+    и возвращает строку с датой в формате "ДД.ММ.ГГГГ" пример: "11.03.2024"
+    """
+    # Разделяем строку на дату и время
+    date_part = date_string.split("T")[0]
+
+    # Разделяем дату на год, месяц и день
+    year, month, day = date_part.split("-")
+
+    # Формируем новую строку в нужном формате
+    formatted_date = f"{day}.{month}.{year}"
+    # можно так formatted_date = day + '.' + month + '.' + year
+
+    return formatted_date
 
 
-def get_date(date_str: str) -> str:
-    from datetime import datetime
-    dt = datetime.fromisoformat(date_str)
-    return dt.strftime("%d.%m.%Y")
-
-# Пример использования
-print(get_date("2024-05-18T02:26:18.671407"))  # Выведет: 11.03.2024
+# def get_date(date_str: str) -> str:
+#     from datetime import datetime
+#     dt = datetime.fromisoformat(date_str)
+#     return dt.strftime("%d.%m.%Y")
+#
+# # Пример использования
+# print(get_date("2024-05-18T02:26:18.671407"))  # Выведет: 11.03.2024
