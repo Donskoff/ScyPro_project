@@ -46,12 +46,3 @@ def get_date(date_string: str) -> str:
     # можно так formatted_date = day + '.' + month + '.' + year
 
     return formatted_date
-
-# ************
-# def get_date(date_str: str) -> str:
-#     from datetime import datetime
-#     dt = datetime.fromisoformat(date_str)
-#     return dt.strftime("%d.%m.%Y")
-#
-# # Пример использования
-# print(get_date("2024-05-18T02:26:18.671407"))  # Выведет: 11.03.2024
