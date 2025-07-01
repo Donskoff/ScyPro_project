@@ -7,10 +7,10 @@
 - [Описание](#описание)
 - [Требования](#требования)
 - [Установка](#установка)
-- [Настройка](#настройка)
-- [Использование](#использование)
-- [Лицензия](#лицензия)
-  
+- [Серуктура проекта](#title1)
+- [Тестирование](#title2)
+- [Лицензия](#title3)
+
 ## Описание
 
 В пакете src создан модуль с именем widget. Этот модуль содержит функции для работы с картами и счетами.
@@ -71,6 +71,34 @@ pip install -r requirements.txt
 python widget.py
 python processing.py
 
-## Лицензия
+## <a id="title1">Серуктура проекта</a>
 
-Этот проект лицензируется под MIT License.
+...\my_home_project/  
+<p style="margin-left: 1px;">├── src/</p>   
+<p style="margin-left: 30px;">├── masks.py</p>  
+<p style="margin-left: 30px;">├── processing.py</p>  
+<p style="margin-left: 30px;">├── widget.py</p>  
+<p style="margin-left: 1px;">├── tests/</p>
+<p style="margin-left: 30px;">├── test_main.py</p>  
+<p style="margin-left: 1px;">├── main.py</p>   
+<p style="margin-left: 1px;">└── README.md</p> 
+
+## <a id="title2">Тестирование</a>
+
+Для тестирования функций проекта используется библиотека *****<span style="color: green;">pytest</span>*****.  
+Весь тестовый код находится в папке *****<span style="color: green;">tests</span>*****.
+
+### Запуск тестов:
+
+Запуск тестов из командной строки
+Вы также можете запускать тесты из командной строки, выполнив следующую команду в корневой директории проекта:
+Запуск тестов из командной строки  
+
+```
+pytest 
+```
+
+## <a id="title3">Лицензия</a>
+
+Этот проект лицензируется под MIT License.  
+
