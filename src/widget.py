@@ -12,6 +12,8 @@ def mask_account_card(bank_details: str) -> str:
     где X — это цифра номера.
     """
     bank_details_list = bank_details.split()
+    if  not bank_details_list:
+        return "Введите корректные данные!"
     if (
         len(bank_details_list[-1]) == 20
         and bank_details_list[-1].isdigit()
@@ -21,7 +23,7 @@ def mask_account_card(bank_details: str) -> str:
         bank_details_list[-1] = get_mask_account(bank_details_list[-1])
         new_bank_details = " ".join(bank_details_list)
         return new_bank_details
-    elif len(bank_details_list[-1]) == 16 and bank_details_list[-1].isdigit():
+    elif (len(bank_details_list[-1]) == 16 and bank_details_list[-1].isdigit()):
         bank_details_list[-1] = get_mask_card_number(bank_details_list[-1])
         new_bank_details = " ".join(bank_details_list)
         return new_bank_details
