@@ -53,7 +53,7 @@ def get_date(date_string: str) -> str:
 
     if not a:
         return "Дата не соответствует формату ISO 8601!"
-    if int(date_string[5:7]) >12:
+    if int(date_string[5:7]) > 12:
         return "Неверно введен месяц даты!"
     if not date_string[10] == "T" or not date_string[13] == ":" or not date_string[16] == ":":
         return "Неверный ввод даты!"
