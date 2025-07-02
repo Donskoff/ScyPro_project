@@ -5,8 +5,6 @@ import pytest
 
 from src.masks import get_mask_card_number, get_mask_account
 
-from src.widget import mask_account_card
-
 
 def test_mask_card_number(mask_card_number):
     """Функция тестирования с использованием фикстур."""
@@ -42,11 +40,11 @@ def test_get_mask_account_out(mask_account_out):
 
 @pytest.mark.parametrize('account, expected', [
     ('123456789098765', 'Некорректный номер счёта'),
-    ('123456789098765XXXX', 'Некорректный номер счёта'),
+    # ('7000 7922 8960 6361', '7000 79** **** 6361'),
     ('', 'Некорректный номер счёта'),
     ('123456789101112131415161718192021', 'Некорректный номер счёта'),
-    ('qwertyuiop', 'Некорректный номер счёта')
-    # ('', 'Некорректный номер счёта')
+    ('1234qwertyuiop', 'Некорректный номер счёта'),
+    ('', 'Некорректный номер счёта')
 ])
 def test_get_mask_account(account, expected):
     """Функция тестирования с использованием параметризации."""

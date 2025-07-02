@@ -18,3 +18,15 @@ def mask_account():
 @pytest.fixture
 def mask_account_out():
     return 'Некорректный номер счёта'
+
+
+@pytest.fixture
+def account_card_check():
+    return 'Счёт **4305'
+
+
+@pytest.fixture
+def account_card_number():
+    return 'Visa Platinum 7000 79** **** 6361'
+
+
