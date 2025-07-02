@@ -1,5 +1,8 @@
 """Программа обработки информации как о картах, так и о счетах."""
 
+from datetime import datetime
+
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -37,6 +40,23 @@ def get_date(date_string: str) -> str:
     Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
     и возвращает строку с датой в формате "ДД.ММ.ГГГГ" пример: "11.03.2024"
     """
+    if not date_string:
+        return "Введите правильно дату, нет данных!"
+    a = True
+    try:
+        # Попробуем создать объект datetime из строки
+        datetime.fromisoformat(date_string)
+        a = True
+    except ValueError:
+        # Если строка не соответствует формату, возвращаем False
+        a = False
+
+    if not a:
+        return "Дата не соответствует формату ISO 8601!"
+    if int(date_string[5:7]) >12:
+        return "Неверно введен месяц даты!"
+    if not date_string[10] == "T" or not date_string[13] == ":" or not date_string[16] == ":":
+        return "Неверный ввод даты!"
     # Разделяем строку на дату и время
     date_part = date_string.split("T")[0]
 
