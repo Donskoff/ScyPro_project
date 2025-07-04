@@ -86,7 +86,13 @@ python processing.py
 ## <a id="title2">Тестирование</a>
 
 Для тестирования функций проекта используется библиотека *****<span style="color: green;">pytest</span>*****.  
-Весь тестовый код находится в папке *****<span style="color: green;">tests</span>*****.
+Весь тестовый код находится в папке *****<span style="color: green;">tests</span>*****.  
+В папке содержатся модули для тестирования соответствующих функций:  
+conftest.py - модуль содержит все фикстуры  
+test_generators.py - содержит все тесты функций из src/generators.py  
+test_masks.py - содержит все тесты функций из src/masks.py  
+test_processing.py - содержит все тесты функций из src/processing.py  
+test_widget.py - содержит все тесты функций из src/widget.py  
 
 ### Запуск тестов:
 
