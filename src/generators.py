@@ -1,6 +1,6 @@
 """Этот модуль предназначен для изучения темы 11.1 "Включения и генераторы"."""
 
-from typing import Iterator, List, Dict, Any
+from typing import Any, Dict, Iterator, List
 
 
 def filter_by_currency(transactions: List[Dict[str, Any]], type_of_currency: str = "EUR") -> Iterator[Dict[str, Any]]:
@@ -16,19 +16,18 @@ def filter_by_currency(transactions: List[Dict[str, Any]], type_of_currency: str
             yield transaction
 
 
-# ***********************************************************111111111111111111111111
 transactions = [
     {
-        "id": 900000000,
+        "id": 939719570,
         "state": "EXECUTED",
         "date": "2018-06-30T02:08:58.425572",
-        "operationAmount": {"amount": "9824.07", "currency": {"name": "EUR", "code": "EUR"}},
+        "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
         "description": "Перевод организации",
         "from": "Счет 75106830613657916952",
         "to": "Счет 11776614605963066702",
     },
     {
-        "id": 140000000,
+        "id": 142264268,
         "state": "EXECUTED",
         "date": "2019-04-04T23:20:05.206878",
         "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
@@ -37,16 +36,34 @@ transactions = [
         "to": "Счет 75651667383060284188",
     },
     {
-        "id": 123000000,
+        "id": 873106923,
         "state": "EXECUTED",
-        "date": "2019-01-01T12:00:00.000000",
-        "operationAmount": {"amount": "1000.00", "currency": {"name": "EUR", "code": "EUR"}},
-        "description": "Перевод на счет",
-        "from": "Счет 12345678901234567890",
-        "to": "Счет 09876543210987654321",
+        "date": "2019-03-23T01:09:46.296404",
+        "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
+        "description": "Перевод со счета на счет",
+        "from": "Счет 44812258784861134719",
+        "to": "Счет 74489636417521191160",
+    },
+    {
+        "id": 895315941,
+        "state": "EXECUTED",
+        "date": "2018-08-19T04:27:37.904916",
+        "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+        "description": "Перевод с карты на карту",
+        "from": "Visa Classic 6831982476737658",
+        "to": "Visa Platinum 8990922113665229",
+    },
+    {
+        "id": 594226727,
+        "state": "CANCELED",
+        "date": "2018-09-12T21:27:25.241689",
+        "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+        "description": "Перевод организации",
+        "from": "Visa Platinum 1246377376343588",
+        "to": "Счет 14211924144426031657",
     },
 ]
-type_of_currency = "EUR"
+type_of_currency = "USD"
 # Используем итератор для получения транзакций с валютой USD
 filtered_transactions = filter_by_currency(transactions, type_of_currency)
 
@@ -54,8 +71,6 @@ for transaction in filtered_transactions:
     print(transaction)
 
 
-# ***********************************************************111111111111111111111111
-# ******************************************2222222222222222222
 def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
     """Генератор.
 
@@ -128,7 +143,6 @@ for _ in range(5):
         break
 
 
-# *******************************2222222222
 def card_number_generator(start: int, end: int) -> Iterator[str]:
     """Генератор.
 
