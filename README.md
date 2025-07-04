@@ -76,12 +76,68 @@ python processing.py
 ...\my_home_project/  
 <p style="margin-left: 1px;">├── src/</p>   
 <p style="margin-left: 30px;">├── masks.py</p>  
+<p style="margin-left: 30px;">├── generator.py</p>
 <p style="margin-left: 30px;">├── processing.py</p>  
 <p style="margin-left: 30px;">├── widget.py</p>  
 <p style="margin-left: 1px;">├── tests/</p>
 <p style="margin-left: 30px;">├── test_main.py</p>  
+<p style="margin-left: 30px;">├── test_masks.py</p>  
+<p style="margin-left: 30px;">├── test_generator.py</p>  
+<p style="margin-left: 30px;">├── test_widget.py</p>  
+<p style="margin-left: 30px;">├── test_processing.py</p>  
 <p style="margin-left: 1px;">├── main.py</p>   
-<p style="margin-left: 1px;">└── README.md</p> 
+<p style="margin-left: 1px;">└── README.md</p>  
+  
+В модуле widget.py имеются функции:  
+
+- get_date(date_string: str) - Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"  
+и возвращает строку с датой в формате "ДД.ММ.ГГГГ" пример: "11.03.2024"
+- mask_account_card(bank_details: str) - Функция принимает на вход номер счета или карты и  
+возвращает его маску. Номер счета замаскирован и отображается в формате Счёт xxXXXX, а номер карты
+замаскирован и отображается в формате Название карты XXXX XX** **** XXXX, где X — это цифра номера.
+  
+В модуле masks.py имеются функции:  
+
+- get_mask_card_number(card_number: str) -> str:
+Функция маскировки номера банковской карты.
+Функция принимаeт на вход номер карты и возвращает её маску.
+Номер карты замаскирован и отображается в формате XXXX XX** **** XXXX.
+
+- get_mask_account(account_number: str):
+Функция маскировки номера банковского счета.
+Функция принимает на вход номер счета и возвращает его маску.
+Номер счета замаскирован и отображается в формате **XXXX, где X — это цифра номера.
+То есть видны только последние 4 цифры номера, а перед ними — две звездочки.  
+  
+В модуле processing.py имеются функции:  
+
+- filter_by_state(operations: list[dict], state: str = "EXECUTED")
+Функция фильтрации списка. Принимает список словарей и опционально значение для ключа
+state(по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий только те словари,
+у которых ключ state соответствует указанному значению.
+
+
+- sort_by_date(operations: list[dict], reverse: bool = True) -> list[dict]:
+Функция сортировки списка. Принимает список словарей и необязательный параметр,  
+задающий порядок сортировки (по умолчанию 'True' — убывание).  
+Функция должна возвращать новый список, отсортированный по дате (date).
+  
+В модуле generators.py имеются функции:  
+
+- filter_by_currency(transactions: List[Dict[str, Any]], type_of_currency: str = "EUR")
+Функция обработки данных. Функция принимает на вход список словарей, представляющих транзакции.  
+Функция должна возвращать итератор, который поочередно выдает транзакции, где валюта операции  
+соответствует заданной (например, USD).
+
+- transaction_descriptions(transactions: list[dict]):
+Генератор. Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди.
+
+- card_number_generator(start: int, end: int):  
+- Генератор. Выдает номера банковских карт в формате XXXX XXXX XXXX XXXX,  
+где X — цифра номера карты. Генератор может сгенерировать номера карт  
+в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.  
+Генератор принимает начальное и конечное значения для генерации диапазона номеров.  
+
 
 ## <a id="title2">Тестирование</a>
 
