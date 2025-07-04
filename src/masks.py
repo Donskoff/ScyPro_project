@@ -13,7 +13,7 @@ def get_mask_card_number(card_number: str) -> str:
     if len(number_without_spaces) != 16 or not number_without_spaces.isdigit():
         return "Введён некорректный номер карты"
     # Форматируем по блокам по 4 цифры с пробелами
-    masked_card_number = " ".join(number_without_spaces[i : i + 4] for i in range(0, len(number_without_spaces), 4))
+    masked_card_number = " ".join(number_without_spaces[i: i + 4] for i in range(0, len(number_without_spaces), 4))
     # Преобразуем строку в список
     masked_card_number_list = list(masked_card_number)
     for i in range(len(masked_card_number_list)):
