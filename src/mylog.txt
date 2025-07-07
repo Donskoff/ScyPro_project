@@ -1,0 +1,40 @@
+2025-07-07 09:34:12,413 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 09:34:12,413 - INFO - my_function ok. Result: 3
+2025-07-07 09:35:18,498 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 09:35:18,498 - INFO - my_function ok. Result: 3
+2025-07-07 09:36:01,606 - INFO - Starting my_function with args: ('1', 2), kwargs: {}
+2025-07-07 09:36:01,606 - ERROR - my_function error: TypeError. Inputs: ('1', 2), {}
+2025-07-07 09:36:24,978 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 09:36:24,978 - INFO - my_function ok. Result: 3
+2025-07-07 10:04:44,205 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 10:04:44,207 - INFO - my_function ok. Result: 3
+2025-07-07 10:04:55,752 - INFO - Starting my_function with args: (5, 2), kwargs: {}
+2025-07-07 10:04:55,752 - INFO - my_function ok. Result: 7
+2025-07-07 12:27:16,500 - INFO - Starting my_function with args: (11, 23), kwargs: {}
+2025-07-07 12:27:16,500 - INFO - my_function ok. Result: 34
+2025-07-07 14:00:19,794 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 14:00:19,794 - INFO - my_function ok. Result: 3
+2025-07-07 14:00:21,186 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 14:00:21,186 - INFO - my_function ok. Result: 3
+2025-07-07 14:00:26,156 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 14:00:26,156 - INFO - my_function ok. Result: 3
+2025-07-07 14:00:44,209 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 14:00:44,209 - INFO - my_function ok. Result: 3
+2025-07-07 14:30:19,317 - INFO - Starting my_function with args: (11, 21), kwargs: {}
+2025-07-07 14:30:19,317 - INFO - my_function ok. Result: 32
+2025-07-07 15:16:25,383 - INFO - Starting my_function with args: (119, 921), kwargs: {}
+2025-07-07 15:16:25,383 - INFO - my_function ok. Result: 1040
+2025-07-07 15:51:13,653 - INFO - Starting my_function with args: (233333119, 333333921), kwargs: {}
+2025-07-07 15:51:13,653 - INFO - my_function ok. Result: 566667040
+2025-07-07 16:32:59,821 - INFO - Starting my_function with args: (1, 2), kwargs: {}
+2025-07-07 16:32:59,821 - INFO - my_function ok. Result: 3
+2025-07-07 16:41:31,028 - INFO - Starting my_function with args: (5, 8), kwargs: {}
+2025-07-07 16:41:31,028 - INFO - my_function ok. Result: 13
+2025-07-07 16:44:48,189 - INFO - Starting my_function with args: (115, 118), kwargs: {}
+2025-07-07 16:44:48,189 - INFO - my_function ok. Result: 233
+2025-07-07 19:00:01,674 - INFO - Starting my_function with args: (115, 118), kwargs: {}
+2025-07-07 19:00:01,674 - INFO - my_function ok. Result: 233
+2025-07-07 20:19:18,019 - INFO - Starting my_function with args: (1115, 118), kwargs: {}
+2025-07-07 20:19:18,019 - INFO - Starting my_function with args: (1115, 118), kwargs: {}
+2025-07-07 20:19:18,019 - INFO - my_function ok. Result: 1233
+2025-07-07 20:19:18,019 - INFO - my_function ok. Result: 1233
