@@ -1,0 +1,13 @@
+2025-07-08 19:05:52,956 - INFO - Starting my_function with args: (100, 200), kwargs: {}
+2025-07-08 19:05:52,957 - INFO - my_function ok. Result: 300
+2025-07-08 19:07:05,507 - INFO - Starting my_function with args: (100, 200), kwargs: {}
+2025-07-08 19:07:05,508 - INFO - my_function ok. Result: 300
+2025-07-08 19:07:53,935 - INFO - Starting my_function with args: (100, 200), kwargs: {}
+2025-07-08 19:17:12,053 - INFO - Starting my_function with args: (100, 200), kwargs: {}
+2025-07-08 19:17:12,053 - INFO - my_function ok. Result: 300
+2025-07-08 19:22:50,034 - INFO - Starting my_function with args: (1555, 2555), kwargs: {}
+2025-07-08 19:22:50,035 - INFO - my_function ok. Result: 4110
+2025-07-08 19:23:00,044 - INFO - Starting my_function with args: (1555, 2555), kwargs: {}
+2025-07-08 19:23:00,045 - INFO - my_function ok. Result: 4110
+2025-07-08 19:23:16,094 - INFO - Starting my_function with args: (9999999999, 888885), kwargs: {}
+2025-07-08 19:23:16,094 - INFO - my_function ok. Result: 10000888884
