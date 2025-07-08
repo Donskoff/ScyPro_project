@@ -13,8 +13,6 @@ def setup_logging(filename=None):
     """Настройка логирования."""
     if filename:
         logging.basicConfig(filename=filename, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    else:
-        logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
 def log(filename=None):
@@ -26,9 +24,10 @@ def log(filename=None):
         def wrapper(*args, **kwargs):
 
             try:
-                logging.info(f"Starting {func.__name__} with args: {args}, kwargs: {kwargs}")
                 result = func(*args, **kwargs)
+                logging.info(f"Starting {func.__name__} with args: {args}, kwargs: {kwargs}")
                 logging.info(f"{func.__name__} ok. Result: {result}")
+                print(f'Function {func.__name__} called whith {args} and kwargs {kwargs}. Result: {result}')
                 return result
             except Exception as e:
                 logging.error(f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}")
@@ -40,11 +39,10 @@ def log(filename=None):
 
 
 # Пример использования декоратора
-# @log(filename="mylog.txt")
+# @log(filename="src/mylog.txt")
 @log(filename="")
 def my_function(x, y):
     """Функция."""
     return x + y
 
-
-print(my_function(1115, 118))
+my_function(12, 78)
