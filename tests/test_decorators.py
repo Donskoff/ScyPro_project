@@ -3,13 +3,11 @@
 Проверяет функциональность декоратора.
 """
 
-from src.decorators import log
+from src.decorators import my_function  # , log
 
 
-@log()
 def test_log(capsys):
     """Tecт."""
-    log()
+    my_function(12, 78)
     captured = capsys.readouterr()
-    assert captured.out == "Starting my_function with args: (115, 118), kwargs: {}"
-    assert captured.out == "my_function ok. Result: 233"
+    assert captured.out == "Function my_function called whith (12, 78) and kwargs {}. Result: 90\n"
