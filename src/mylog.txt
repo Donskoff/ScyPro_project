@@ -42,3 +42,9 @@
 2025-07-08 19:24:19,991 - INFO - my_function ok. Result: 10000888884
 2025-07-08 19:55:29,501 - INFO - Starting my_function with args: (1234356, 7890), kwargs: {}
 2025-07-08 19:55:29,501 - INFO - my_function ok. Result: 1242246
+2025-07-08 20:33:25,181 - INFO - Starting my_function with args: (12, 78), kwargs: {}
+2025-07-08 20:33:25,181 - INFO - my_function ok. Result: 90
+2025-07-08 20:36:36,904 - INFO - Starting my_function with args: (12, 78), kwargs: {}
+2025-07-08 20:36:36,904 - INFO - my_function ok. Result: 90
+2025-07-08 20:37:09,232 - INFO - Starting my_function with args: (122, 781), kwargs: {}
+2025-07-08 20:37:09,232 - INFO - my_function ok. Result: 903
