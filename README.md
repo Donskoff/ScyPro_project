@@ -76,12 +76,14 @@ python processing.py
 ...\my_home_project/  
 <p style="margin-left: 1px;">├── src/</p>   
 <p style="margin-left: 30px;">├── masks.py</p>  
+<p style="margin-left: 30px;">├── decorators.py</p> 
 <p style="margin-left: 30px;">├── generator.py</p>
 <p style="margin-left: 30px;">├── processing.py</p>  
 <p style="margin-left: 30px;">├── widget.py</p>  
 <p style="margin-left: 1px;">├── tests/</p>
 <p style="margin-left: 30px;">├── test_main.py</p>  
 <p style="margin-left: 30px;">├── test_masks.py</p>  
+<p style="margin-left: 30px;">├── test_decorators.py</p>  
 <p style="margin-left: 30px;">├── test_generator.py</p>  
 <p style="margin-left: 30px;">├── test_widget.py</p>  
 <p style="margin-left: 30px;">├── test_processing.py</p>  
@@ -149,6 +151,7 @@ test_generators.py - содержит все тесты функций из src/
 test_masks.py - содержит все тесты функций из src/masks.py  
 test_processing.py - содержит все тесты функций из src/processing.py  
 test_widget.py - содержит все тесты функций из src/widget.py  
+test_decorators.py - содержит все тесты функций из src/decorators.py
 
 ### Запуск тестов:
 
