@@ -160,7 +160,8 @@ C:\Users\bione\Desktop\my_prj\my_home_project>
 
 ```
 pytest 
-```
+```  
+pytest --cov=src --cov-report=html
 
 ## <a id="title3">Лицензия</a>
 
