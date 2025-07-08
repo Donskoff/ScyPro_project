@@ -6,7 +6,6 @@
 
 import functools
 import logging
-import sys
 
 
 def setup_logging(filename=None):
@@ -27,7 +26,8 @@ def log(filename=None):
                 result = func(*args, **kwargs)
                 logging.info(f"Starting {func.__name__} with args: {args}, kwargs: {kwargs}")
                 logging.info(f"{func.__name__} ok. Result: {result}")
-                print(f'Function {func.__name__} called whith {args} and kwargs {kwargs}. Result: {result}')
+                if not filename:
+                    print(f'Function {func.__name__} called whith {args} and kwargs {kwargs}. Result: {result}')
                 return result
             except Exception as e:
                 logging.error(f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}")
@@ -45,4 +45,5 @@ def my_function(x, y):
     """Функция."""
     return x + y
 
-my_function(12, 78)
+
+my_function(1, 7)
