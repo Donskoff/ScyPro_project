@@ -4,8 +4,9 @@
 """
 
 import os
-import requests
 from typing import Dict
+
+import requests
 from dotenv import load_dotenv
 
 # Загрузка переменных из .env-файла
@@ -31,26 +32,28 @@ def fetch_exchange_rates(url: str, access_key: str, base_currency: str, symbols:
     else:
         raise ValueError(f"Ошибка: {response.status_code}")
 
-    # data = response.json()
-    # return {"USD": data["rates"]["USD"], "RUB": data["rates"]["RUB"]}
 
-def calculate_usd_to_rub(value_rub: float, value_usd: float) -> float:
-    """Конвертирует рубли в доллары по курсу."""
-    return value_rub / value_usd
+def convert_transaction_to_rub(transaction: dict) -> dict:
+    """Извлекаем сумму и валюту."""
+    amount = float(transaction["operationAmount"]["amount"])
+    currency_code = transaction["operationAmount"]["currency"]["code"]
 
+    # Конвертируем сумму в рубли
+    if currency_code != "RUB":
+        # Получаем курсы валют
+        rates = fetch_exchange_rates(url, access_key, base_currency, symbols)
 
-# # Получаем курсы валют
-try:
-    rates = fetch_exchange_rates(url, access_key, base_currency, symbols)
-    value_usd = rates["USD"]
-    value_rub = rates["RUB"]
-    value_rub_usd = calculate_usd_to_rub(value_rub, value_usd)
+        value_usd = rates["USD"]
+        value_rub = rates["RUB"]
 
-    # Выводим курсы
-    print(f"Курс EUR к USD: {value_usd}")
-    print(f"Курс EUR к RUB: {value_rub}")
-    print(f"Курс USD к RUB: {value_rub_usd}")
-
-except ValueError as e:
-    print(e)
-# print(os.path.abspath("src/external_api.py"))
+        if currency_code == "USD":
+            transaction["operationAmount"]["amount"] = amount * value_rub / value_usd  # Конвертация в рубли
+            transaction["operationAmount"]["currency"]["code"] = "RUB"
+            transaction["operationAmount"]["currency"]["name"] = "руб."
+        elif currency_code == "EUR":
+            transaction["operationAmount"]["amount"] = amount * value_rub  # Конвертация в рубли
+            transaction["operationAmount"]["currency"]["code"] = "RUB"
+            transaction["operationAmount"]["currency"]["name"] = "руб."
+        else:
+            return transaction
+    return transaction
