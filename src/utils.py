@@ -4,14 +4,9 @@
 """
 
 import json
-
 import os
-
-import external_api
-
-from external_api import value_rub_usd, value_rub
-
-from typing import List, Dict, Any, Union
+from src.external_api import value_rub_usd, value_rub
+from typing import List, Dict, Any
 
 def load_transactions(file_path: str) -> List[Dict[str, Any]]:
     """Загружает данные о финансовых транзакциях из JSON-файла."""
@@ -36,18 +31,36 @@ def load_transactions(file_path: str) -> List[Dict[str, Any]]:
         # Обработка других возможных исключений
         print(f"An error occurred: {e}")
         return []
-
-
+#************************************************************
+# def load_transactions(file_path: str) -> List[Dict[str, Any]]:
+#     """Загружает данные о финансовых транзакциях из JSON-файла."""
+#     # Проверяем, существует ли файл
+#     if not os.path.isfile(file_path):
+#         return []
+#
+#     # Открываем и читаем файл
+#     try:
+#         with open(file_path, encoding="utf-8") as file:
+#             data = json.load(file)
+#             if isinstance(data, list):
+#                 return data
+#             return []
+#     except json.JSONDecodeError:
+#         return []
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
+#         return []
+#************************************************************
 # Путь к файлу operations.json
 file_path = r"C:\Users\bione\Desktop\my_prj\my_home_project\data\operations.json"
 
 transactions = load_transactions(file_path)
-print(transactions)
-print(external_api.value_rub_usd)
-print(external_api.value_rub)
+# print(transactions)
+# print(external_api.value_rub_usd)
+# print(external_api.value_rub)
 
 
-def convert_transaction_to_rub(transaction:Dict[str, Any]) -> Dict[str, Any]:
+def convert_transaction_to_rub(transaction: Dict[str, Any]) -> Dict[str, Any]:
     """Извлекаем сумму и валюту."""
     amount = float(transaction["operationAmount"]["amount"])
     currency_code = transaction["operationAmount"]["currency"]["code"]
@@ -68,7 +81,7 @@ def convert_transaction_to_rub(transaction:Dict[str, Any]) -> Dict[str, Any]:
 
     return transaction
 
-
+#*********************потом это надо раскоментировать
 # Пример транзакции
 transaction = {
     "id": 441945886,
