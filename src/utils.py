@@ -5,7 +5,7 @@
 
 import json
 import os
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 
 def load_transactions(file_path: str) -> List[Dict[str, Any]]:
@@ -18,7 +18,7 @@ def load_transactions(file_path: str) -> List[Dict[str, Any]]:
     try:
         with open(file_path, encoding="utf-8") as file:
             data = json.load(file)
-            print(f"data = {data}")
+            # print(f"data = {data}")  # Добавьте этот вывод для отладки
             # Проверяем, является ли данные списком
             if isinstance(data, list):
                 return data
