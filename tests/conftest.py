@@ -1,54 +1,56 @@
 """Здесь расположены фикстуры для тестирования функций проекта."""
 
-import pytest
+import json
+from typing import Any, Dict, List
+from unittest import mock
 
-from typing import List, Dict, Any
+import pytest
 
 
 @pytest.fixture
-def mask_card_number():
+def mask_card_number() -> str:
     """Фикстура."""
     return "1234 1234 1234 1234"
 
 
 @pytest.fixture
-def mask_card_number_out():
+def mask_card_number_out() -> str:
     """Фикстура."""
     return "Введён некорректный номер карты"
 
 
 @pytest.fixture
-def mask_account():
+def mask_account() -> str:
     """Фикстура."""
     return "12345678909876543212"
 
 
 @pytest.fixture
-def mask_account_out():
+def mask_account_out() -> str:
     """Фикстура."""
     return "Некорректный номер счёта"
 
 
 @pytest.fixture
-def account_card_check():
+def account_card_check() -> str:
     """Фикстура."""
     return "Счёт **4305"
 
 
 @pytest.fixture
-def account_card_number():
+def account_card_number() -> str:
     """Фикстура."""
     return "Visa Platinum 7000 79** **** 6361"
 
 
 @pytest.fixture
-def get_date_par():
+def get_date_par() -> str:
     """Фикстура."""
     return "11.03.2024"
 
 
 @pytest.fixture
-def filter_by_state_func():
+def filter_by_state_func() -> List[Dict[str, Any]]:
     """Фикстура."""
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
@@ -57,7 +59,7 @@ def filter_by_state_func():
 
 
 @pytest.fixture
-def sort_by_date_func():
+def sort_by_date_func() -> List[Dict[str, Any]]:
     """Фикстура."""
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
@@ -160,6 +162,34 @@ def card_number_range() -> tuple:
 
 
 @pytest.fixture
-def calculate_usd_to_rub_fix():
+def calculate_usd_to_rub_fix() -> float:
     """Фиктура для генерации диапазона номеров карт."""
     return 0.5
+
+
+@pytest.fixture
+def mock_file_not_found(mocker: mock.MagicMock) -> None:
+    """Фикстура для случая, когда файл не существует."""
+    mocker.patch("os.path.isfile", return_value=False)
+
+
+@pytest.fixture
+def mock_empty_file(mocker: mock.MagicMock) -> None:
+    """Фикстура для пустого файла."""
+    mock_open = mock.mock_open(read_data="")
+    mocker.patch("builtins.open", mock_open)
+
+
+@pytest.fixture
+def mock_invalid_json(mocker: mock.MagicMock) -> None:
+    """Фикстура для файла с некорректным JSON."""
+    mock_open = mock.mock_open(read_data=json.dumps({"id": 1, "amount": 100}))  # Это не список
+    mocker.patch("builtins.open", mock_open)
+
+
+@pytest.fixture
+def mock_valid_json(mocker: mock.MagicMock) -> None:
+    """Фикстура для файла с корректным JSON."""
+    test_data = [{"id": 1, "amount": 100}, {"id": 2, "amount": 200}]
+    mock_open = mock.mock_open(read_data=json.dumps(test_data))
+    mocker.patch("builtins.open", mock_open)
