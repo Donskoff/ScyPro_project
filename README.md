@@ -161,7 +161,14 @@ C:\Users\bione\Desktop\my_prj\my_home_project>
 ```
 pytest 
 ```  
-pytest --cov=src --cov-report=html
+pytest --cov=src --cov-report=html  
+1. git add htmlcov — чтобы добавить папку в отслеживание.
+2. git commit -m "Добавлен отчёт покрытия тестами" — чтобы зафиксировать изменения.
+3. git push — чтобы отправить изменения в удалённый репозиторий.  
+Убедись, что папка htmlcov не указана в файле .gitignore, 
+так как это может помешать её добавлению в репозиторий. 
+Также проверь, что команда git add htmlcov действительно 
+была выполнена в той же директории, где находится папка htmlcov.
 
 ## <a id="title3">Лицензия</a>
 
