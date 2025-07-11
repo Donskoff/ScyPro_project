@@ -159,8 +159,7 @@ def card_number_range() -> tuple:
     return (1, 5)  # Вы можете изменить диапазон по необходимости
 
 
-# @pytest.fixture
-# def capsys():
-#     """Фикстура для перехвата вывода в консоль."""
-#     from _pytest.capture import CaptureFixture
-#     return CaptureFixture()
+@pytest.fixture
+def calculate_usd_to_rub_fix():
+    """Фиктура для генерации диапазона номеров карт."""
+    return 0.5
