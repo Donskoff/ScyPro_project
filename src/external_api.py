@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 # Загрузка переменных из .env-файла
 load_dotenv()
 
-# Получение значения переменной GITHUB_TOKEN из .env-файла
+# Получение значения переменной API_KEY из .env-файла
 API_KEY = os.getenv("API_KEY")
 
 # URL для запроса
@@ -31,13 +31,15 @@ def fetch_exchange_rates(url: str, access_key: str, base_currency: str, symbols:
     else:
         raise ValueError(f"Ошибка: {response.status_code}")
 
+    # data = response.json()
+    # return {"USD": data["rates"]["USD"], "RUB": data["rates"]["RUB"]}
 
 def calculate_usd_to_rub(value_rub: float, value_usd: float) -> float:
     """Конвертирует рубли в доллары по курсу."""
     return value_rub / value_usd
 
 
-# Получаем курсы валют
+# # Получаем курсы валют
 try:
     rates = fetch_exchange_rates(url, access_key, base_currency, symbols)
     value_usd = rates["USD"]
@@ -51,3 +53,4 @@ try:
 
 except ValueError as e:
     print(e)
+# print(os.path.abspath("src/external_api.py"))
