@@ -6,10 +6,12 @@
 import unittest
 from unittest.mock import mock_open, patch
 
-from src.operation_reader import reader_csv
+import pandas as pd
+
+from src.operation_reader import reader_csv, reader_xlsx
 
 
-class TestReaderCSV(unittest.TestCase):
+class TestReaderXlsx(unittest.TestCase):
     """
     Тестирование функции reader_csv(file_path).
 
@@ -60,6 +62,51 @@ class TestReaderCSV(unittest.TestCase):
 
         self.assertEqual(result, [])
         mock_file.assert_called_once_with(file_path, mode="r", encoding="utf-8")
+
+    @patch("src.operation_reader.pd.read_excel")
+    def test_reader_xlsx(self, mock_read_excel):
+        """Подготовка тестовых данных."""
+        mock_data = {
+            "date": ["2021-01-01", "2021-01-02"],
+            "amount": [100.0, -50.0],
+            "description": ["Deposit", "Withdrawal"],
+        }
+        mock_df = pd.DataFrame(mock_data)
+        mock_read_excel.return_value = mock_df
+
+        # Путь к файлу (можно использовать любой, так как мы мокируем чтение)
+        file_path = "C:/Users/bione/Desktop/my_prj/my_prj/my_home_project/data/transactions_excel.xlsx"
+
+        # Вызов тестируемой функции
+        result = reader_xlsx(file_path)
+
+        # Ожидаемый результат
+        expected_result = [
+            {"date": "2021-01-01", "amount": 100.0, "description": "Deposit"},
+            {"date": "2021-01-02", "amount": -50.0, "description": "Withdrawal"},
+        ]
+
+        # Проверка результата
+        self.assertEqual(result, expected_result)
+        mock_read_excel.assert_called_once_with(file_path)
+
+    @patch("src.operation_reader.pd.read_excel")
+    def test_reader_xlsx_empty_file(self, mock_read_excel):
+        """Подготовка пустого DataFrame."""
+        mock_df = pd.DataFrame(columns=["date", "amount", "description"])
+        mock_read_excel.return_value = mock_df
+
+        file_path = "C:/Users/bione/Desktop/my_prj/my_prj/my_home_project/data/transactions_excel.xlsx"
+
+        # Вызов тестируемой функции
+        result = reader_xlsx(file_path)
+
+        # Ожидаемый результат - пустой список
+        expected_result = []
+
+        # Проверка результата
+        self.assertEqual(result, expected_result)
+        mock_read_excel.assert_called_once_with(file_path)
 
 
 if __name__ == "__main__":
