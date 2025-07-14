@@ -77,19 +77,38 @@ python processing.py
 <p style="margin-left: 1px;">├── src/</p>   
 <p style="margin-left: 30px;">├── masks.py</p>  
 <p style="margin-left: 30px;">├── decorators.py</p> 
+<p style="margin-left: 30px;">├── external_apy.py</p> 
 <p style="margin-left: 30px;">├── generator.py</p>
 <p style="margin-left: 30px;">├── processing.py</p>  
 <p style="margin-left: 30px;">├── widget.py</p>  
+<p style="margin-left: 30px;">├── mylog.txt</p>
+<p style="margin-left: 30px;">├── operation_peader.py</p>
+<p style="margin-left: 30px;">├── utils.py</p> 
 <p style="margin-left: 1px;">├── tests/</p>
 <p style="margin-left: 30px;">├── test_main.py</p>  
 <p style="margin-left: 30px;">├── test_masks.py</p>  
 <p style="margin-left: 30px;">├── test_decorators.py</p>  
 <p style="margin-left: 30px;">├── test_generator.py</p>  
 <p style="margin-left: 30px;">├── test_widget.py</p>  
-<p style="margin-left: 30px;">├── test_processing.py</p>  
+<p style="margin-left: 30px;">├── test_processing.py</p> 
+<p style="margin-left: 30px;">├── test_utils.py</p>
+<p style="margin-left: 30px;">├── test_external_apy.py</p>
+<p style="margin-left: 30px;">├── test_operation_peader.py</p>
 <p style="margin-left: 1px;">├── main.py</p>   
 <p style="margin-left: 1px;">└── README.md</p>  
-  
+
+В модуле operation_peader.py имеются функции:  
+- def reader_csv(file_path: str) -> List[Dict[str, str]]:  
+    """Считывает финансовые операции из файла transactions.csv.  
+       Аргументы:  
+       file_path -- путь к файлу transactions.csv  
+       Возвращает:  
+       Список словарей с транзакциями."""  
+- def reader_xlsx(file_path_xlsx):  
+    """Считывает финансовые операции из файла Excel и возвращает их в виде списка словарей.  
+    :param file_path_xlsx: Путь к файлу Excel.  
+    :return: Список словарей с транзакциями."""  
+
 В модуле widget.py имеются функции:  
 
 - get_date(date_string: str) - Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"  
@@ -143,7 +162,7 @@ state(по умолчанию 'EXECUTED'). Функция возвращает �
 
 ## <a id="title2">Тестирование</a>
 
-Для тестирования функций проекта используется библиотека *****<span style="color: green;">pytest</span>*****.  
+Для тестирования функций проекта используется библиотеки:*****<span style="color: green;">pytest</span>*****.  
 Весь тестовый код находится в папке *****<span style="color: green;">tests</span>*****.  
 В папке содержатся модули для тестирования соответствующих функций:  
 conftest.py - модуль содержит все фикстуры  
@@ -151,7 +170,9 @@ test_generators.py - содержит все тесты функций из src/
 test_masks.py - содержит все тесты функций из src/masks.py  
 test_processing.py - содержит все тесты функций из src/processing.py  
 test_widget.py - содержит все тесты функций из src/widget.py  
-test_decorators.py - содержит все тесты функций из src/decorators.py
+test_decorators.py - содержит все тесты функций из src/decorators.py  
+test_operatin_reader.py - содержит все тесты функций из src/operatin_reader.py  
+test_utils.py - содержит все тесты функций из src/utils.py  
 
 ### Запуск тестов:
 
