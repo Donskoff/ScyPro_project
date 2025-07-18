@@ -43,7 +43,16 @@ def reader_xlsx(file_path_xlsx):
     # Чтение данных из Excel файла
     df = pd.read_excel(file_path_xlsx)
 
+    # Замена NaN на "нет данных"
+    df.fillna("нет данных", inplace=True)
+
     # Преобразование DataFrame в список словарей
     transactions = df.to_dict(orient="records")
+    # Ключ, по которому нужно изменить значение
+    key_to_change = "id"
 
+    # Изменение значений float на целочисленные
+    for transaction in transactions:
+        if key_to_change in transaction and isinstance(transaction[key_to_change], float):
+            transaction[key_to_change] = int(transaction[key_to_change])
     return transactions

@@ -41,6 +41,166 @@
 ###### Выход функции, если вторым аргументов передано 'CANCELED'
 [{'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
 
+#### <span style="color: green;">[[Модуль decoder_csv_json.py]()]</span>  
+- модуль приводит структуру данных из файла transactions.csv к формату данных в файле operations.json.  
+csv =[  
+    {  
+        "id;state;date;amount;currency_name;currency_code;from;to;description":   
+        "650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;"  
+        "Счет 39745660563456619397;Перевод организации"  
+    }  
+]  
+json = [    
+    {  
+        "id": 441945886,  
+        "state": "EXECUTED",  
+        "date": "2019-08-26T10:50:58.294041",  
+        "operationAmount": {  
+            "amount": "31957.58",  
+            "currency": {"name": "руб.", "code": "RUB"},  
+        },  
+        "description": "Перевод организации",  
+        "from": "Maestro 1596837868705199",  
+        "to": "Счет 64686473678894779589",  
+    }  
+]
+#### <span style="color: green;">[[Модуль decoder_xlsx_json.py]()]</span>  
+- модуль приводит структуру данных из файла transactions_excel.xlsx к формату данных в файле operations.json.   
+xlsx = [  
+    {  
+        "id": 650703,  
+        "state": "EXECUTED",  
+        "date": "2023-09-05T11:30:32Z",  
+        "amount": 16210.0,  
+        "currency_name": "Sol",  
+        "currency_code": "PEN",  
+        "from": "Счет 58803664561298323391",  
+        "to": "Счет 39745660563456619397",  
+        "description": "Перевод организации",  
+    }
+]
+#### <span style="color: green;">[[Модуль decorators.py]()]</span>  
+#### <span style="color: green;">[[Модуль external_apy.py]()]</span>  
+#### <span style="color: green;">[[Модуль generators.py]()]</span>  
+В модуле generators.py имеются функции:  
+
+- filter_by_currency(transactions: List[Dict[str, Any]], type_of_currency: str = "EUR")
+Функция обработки данных. Функция принимает на вход список словарей, представляющих транзакции.  
+Функция должна возвращать итератор, который поочередно выдает транзакции, где валюта операции  
+соответствует заданной (например, USD).
+
+- transaction_descriptions(transactions: list[dict]):
+Генератор. Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди.
+
+- card_number_generator(start: int, end: int):  
+- Генератор. Выдает номера банковских карт в формате XXXX XXXX XXXX XXXX,  
+где X — цифра номера карты. Генератор может сгенерировать номера карт  
+в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.  
+Генератор принимает начальное и конечное значения для генерации диапазона номеров.  
+#### <span style="color: green;">[[Модуль masks.py]()]</span>  
+В модуле masks.py имеются функции:  
+
+- get_mask_card_number(card_number: str) -> str:
+Функция маскировки номера банковской карты.
+Функция принимаeт на вход номер карты и возвращает её маску.
+Номер карты замаскирован и отображается в формате XXXX XX** **** XXXX.
+
+- get_mask_account(account_number: str):
+Функция маскировки номера банковского счета.
+Функция принимает на вход номер счета и возвращает его маску.
+Номер счета замаскирован и отображается в формате **XXXX, где X — это цифра номера.
+То есть видны только последние 4 цифры номера, а перед ними — две звездочки. 
+#### <span style="color: green;">[[Модуль mylog.txt]()]</span>  
+#### <span style="color: green;">[[Модуль operation_reader.py]()]</span>  
+В модуле operation_peader.py имеются функции:  
+- def reader_csv(file_path: str) -> List[Dict[str, str]]:  
+    """Считывает финансовые операции из файла transactions.csv.  
+       Аргументы:  
+       file_path -- путь к файлу transactions.csv  
+       Возвращает:  
+       Список словарей с транзакциями."""  
+- def reader_xlsx(file_path_xlsx):  
+    """Считывает финансовые операции из файла Excel и возвращает их в виде списка словарей.  
+    :param file_path_xlsx: Путь к файлу Excel.  
+    :return: Список словарей с транзакциями."""
+#### <span style="color: green;">[[Модуль process_searching.py]()]</span>  
+#### <span style="color: green;">[[Модуль processing.py]()]</span>  
+В модуле processing.py имеются функции:  
+
+- filter_by_state(operations: list[dict], state: str = "EXECUTED")
+Функция фильтрации списка. Принимает список словарей и опционально значение для ключа
+state(по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий только те словари,
+у которых ключ state соответствует указанному значению.
+
+
+- sort_by_date(operations: list[dict], reverse: bool = True) -> list[dict]:
+Функция сортировки списка. Принимает список словарей и необязательный параметр,  
+задающий порядок сортировки (по умолчанию 'True' — убывание).  
+Функция должна возвращать новый список, отсортированный по дате (date).
+#### <span style="color: green;">[[Модуль utils.py]()]</span>  
+#### <span style="color: green;">[[Модуль widget.py]()]</span>  
+В модуле widget.py имеются функции:  
+
+- get_date(date_string: str) - Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"  
+и возвращает строку с датой в формате "ДД.ММ.ГГГГ" пример: "11.03.2024"
+- mask_account_card(bank_details: str) - Функция принимает на вход номер счета или карты и  
+возвращает его маску. Номер счета замаскирован и отображается в формате Счёт xxXXXX, а номер карты
+замаскирован и отображается в формате Название карты XXXX XX** **** XXXX, где X — это цифра номера.
+#### <span style="color: green;">[[Модуль main.py]()]</span>  
+отвечает за основную логику проекта и связывает функциональности между собой.
+Ожидаемое поведение программы должно быть следующим:
+
+Программа приветствует пользователя:
+Программа: Привет! Добро пожаловать в программу работы 
+с банковскими транзакциями. 
+Выберите необходимый пункт меню:
+1. Получить информацию о транзакциях из JSON-файла
+2. Получить информацию о транзакциях из CSV-файла
+3. Получить информацию о транзакциях из XLSX-файла
+
+Пользователь: 1  
+Программа: Для обработки выбран JSON-файл.  
+После пользователь выбирает статус интересующих его операций.  
+Для пользователя executed, Executed и EXECUTED — это одно и то же, а для программы — разное. Используйте приведение к единому регистру.  
+Программа: Введите статус, по которому необходимо выполнить фильтрацию.   
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING  
+Пользователь: EXECUTED  
+Программа: Операции отфильтрованы по статусу "EXECUTED"  
+В случае, если пользователь ввел неверный статус, программа не должна падать в ошибку, а должна возвращать  
+пользователя к вводу корректного статуса:  
+Пользователь: test  
+Программа: Статус операции "test" недоступен.  
+Программа: Введите статус, по которому необходимо выполнить фильтрацию.  
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING  
+После фильтрации программа выводит следующие вопросы для уточнения выборки операций, необходимых пользователю,  
+и выводит в консоль операции, соответствующие выборке пользователя:  
+Программа: Отсортировать операции по дате? Да/Нет  
+Пользователь: да  
+Программа: Отсортировать по возрастанию или по убыванию?  
+Пользователь: по возрастанию/по убыванию  
+Программа: Выводить только рублевые транзакции? Да/Нет  
+Пользователь: да  
+Программа: Отфильтровать список транзакций по определенному слову   
+в описании? Да/Нет  
+Пользователь: да/нет  
+Программа: Распечатываю итоговый список транзакций...  
+Программа:   
+Всего банковских операций в выборке: 2  
+
+08.12.2019 Открытие вклада   
+Счет **4321  
+Сумма: 40542 руб.   
+  
+12.11.2019 Перевод с карты на карту  
+MasterCard 7771 27** **** 3727 -> Visa Platinum 1293 38** **** 9203  
+Сумма: 130 USD   
+  
+Если выборка оказалась пустой, программа выводит сообщение:  
+Программа: Не найдено ни одной транзакции, подходящей под ваши  
+условия фильтрации  
+  
+
+
 ## Требования
 
 Перед тем, как установить проект, убедитесь, что у вас установлен python = 3.13 или выше.
@@ -72,93 +232,38 @@ python widget.py
 python processing.py
 
 ## <a id="title1">Серуктура проекта</a>
+ 
 
-...\my_home_project/  
-<p style="margin-left: 1px;">├── src/</p>   
-<p style="margin-left: 30px;">├── masks.py</p>  
-<p style="margin-left: 30px;">├── decorators.py</p> 
+
+
+### <p style="margin-left: 1px;"><a style="color: yellow;" id="title1">...\my_home_project/ </a> 
+#### <p style="margin-left: 1px;">├── <a style="color: turquoise;" id="title1">src/</a>
+<p style="margin-left: 30px;">├── decoder_csv_json.py</p> 
+<p style="margin-left: 30px;">├── decoder_xlsx_json.py</p> 
+<p style="margin-left: 30px;">├── decorators.py.py</p> 
 <p style="margin-left: 30px;">├── external_apy.py</p> 
-<p style="margin-left: 30px;">├── generator.py</p>
+<p style="margin-left: 30px;">├── generators.py</p> 
+<p style="margin-left: 30px;">├── masks.py</p> 
+<p style="margin-left: 30px;">├── mylog.txt</p> 
+<p style="margin-left: 30px;">├── operation_reader.py</p> 
+<p style="margin-left: 30px;">├── process_serching.py</p>
 <p style="margin-left: 30px;">├── processing.py</p>  
-<p style="margin-left: 30px;">├── widget.py</p>  
-<p style="margin-left: 30px;">├── mylog.txt</p>
-<p style="margin-left: 30px;">├── operation_peader.py</p>
-<p style="margin-left: 30px;">├── utils.py</p> 
-<p style="margin-left: 1px;">├── tests/</p>
-<p style="margin-left: 30px;">├── test_main.py</p>  
-<p style="margin-left: 30px;">├── test_masks.py</p>  
+<p style="margin-left: 30px;">├── utils.py</p>  
+<p style="margin-left: 30px;">├── widget.txt</p>
+<p style="margin-left: 1px;">├── <b style="color: turquoise;" id="title1">tests</b>
+<p style="margin-left: 30px;">├── conftest.py</p>  
+<p style="margin-left: 30px;">├── test_decoder_csv_json.py</p>  
+<p style="margin-left: 30px;">├── test_decoder_xlsx_json.py</p>  
 <p style="margin-left: 30px;">├── test_decorators.py</p>  
-<p style="margin-left: 30px;">├── test_generator.py</p>  
-<p style="margin-left: 30px;">├── test_widget.py</p>  
-<p style="margin-left: 30px;">├── test_processing.py</p> 
-<p style="margin-left: 30px;">├── test_utils.py</p>
-<p style="margin-left: 30px;">├── test_external_apy.py</p>
+<p style="margin-left: 30px;">├── test_external_apy.py</p>  
+<p style="margin-left: 30px;">├── test_generators.py</p> 
+<p style="margin-left: 30px;">├── test_masks.py</p>
+<p style="margin-left: 30px;">├── test_operation_reader.py</p>
 <p style="margin-left: 30px;">├── test_operation_peader.py</p>
-<p style="margin-left: 1px;">├── main.py</p>   
-<p style="margin-left: 1px;">└── README.md</p>  
-
-В модуле operation_peader.py имеются функции:  
-- def reader_csv(file_path: str) -> List[Dict[str, str]]:  
-    """Считывает финансовые операции из файла transactions.csv.  
-       Аргументы:  
-       file_path -- путь к файлу transactions.csv  
-       Возвращает:  
-       Список словарей с транзакциями."""  
-- def reader_xlsx(file_path_xlsx):  
-    """Считывает финансовые операции из файла Excel и возвращает их в виде списка словарей.  
-    :param file_path_xlsx: Путь к файлу Excel.  
-    :return: Список словарей с транзакциями."""  
-
-В модуле widget.py имеются функции:  
-
-- get_date(date_string: str) - Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"  
-и возвращает строку с датой в формате "ДД.ММ.ГГГГ" пример: "11.03.2024"
-- mask_account_card(bank_details: str) - Функция принимает на вход номер счета или карты и  
-возвращает его маску. Номер счета замаскирован и отображается в формате Счёт xxXXXX, а номер карты
-замаскирован и отображается в формате Название карты XXXX XX** **** XXXX, где X — это цифра номера.
-  
-В модуле masks.py имеются функции:  
-
-- get_mask_card_number(card_number: str) -> str:
-Функция маскировки номера банковской карты.
-Функция принимаeт на вход номер карты и возвращает её маску.
-Номер карты замаскирован и отображается в формате XXXX XX** **** XXXX.
-
-- get_mask_account(account_number: str):
-Функция маскировки номера банковского счета.
-Функция принимает на вход номер счета и возвращает его маску.
-Номер счета замаскирован и отображается в формате **XXXX, где X — это цифра номера.
-То есть видны только последние 4 цифры номера, а перед ними — две звездочки.  
-  
-В модуле processing.py имеются функции:  
-
-- filter_by_state(operations: list[dict], state: str = "EXECUTED")
-Функция фильтрации списка. Принимает список словарей и опционально значение для ключа
-state(по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий только те словари,
-у которых ключ state соответствует указанному значению.
-
-
-- sort_by_date(operations: list[dict], reverse: bool = True) -> list[dict]:
-Функция сортировки списка. Принимает список словарей и необязательный параметр,  
-задающий порядок сортировки (по умолчанию 'True' — убывание).  
-Функция должна возвращать новый список, отсортированный по дате (date).
-  
-В модуле generators.py имеются функции:  
-
-- filter_by_currency(transactions: List[Dict[str, Any]], type_of_currency: str = "EUR")
-Функция обработки данных. Функция принимает на вход список словарей, представляющих транзакции.  
-Функция должна возвращать итератор, который поочередно выдает транзакции, где валюта операции  
-соответствует заданной (например, USD).
-
-- transaction_descriptions(transactions: list[dict]):
-Генератор. Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди.
-
-- card_number_generator(start: int, end: int):  
-- Генератор. Выдает номера банковских карт в формате XXXX XXXX XXXX XXXX,  
-где X — цифра номера карты. Генератор может сгенерировать номера карт  
-в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.  
-Генератор принимает начальное и конечное значения для генерации диапазона номеров.  
-
+<p style="margin-left: 30px;">├── test_utils.py</p>
+<p style="margin-left: 30px;">├── test_widget.py</p>
+<p style="margin-left: 1px;">├── <b style="color: turquoise;" id="title1">main</b>
+<p style="margin-left: 1px;">└── <b style="color: turquoise;" id="title1">README.md</b>
 
 ## <a id="title2">Тестирование</a>
 
